@@ -1,9 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+import Home from './sections/Home';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+injectTapEventPlugin();
+
+const wrapped = (
+      <MuiThemeProvider>
+          <Home welcome={'REACT CMS'}/>
+      </MuiThemeProvider>
+)
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
+    wrapped, document.getElementById('root') );

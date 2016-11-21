@@ -1,0 +1,22 @@
+.sidebar{
+      background: rgb(37,42,48);
+      color: #fff;
+}
+
+#component-menu{
+  position:fixed;
+  top:0;
+  bottom:0;
+  width: 23%;
+}
+
+#component-menu .pure-menu-link{
+    color:#fff;
+    margin-left:1.6em;
+    font-size:20px;
+}
+
+#component-menu .pure-menu-heading{
+  color:rgb(75, 113, 151);
+  font-size:110%;
+}
