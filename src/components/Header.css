@@ -1,0 +1,10 @@
+.home-menu{
+    text-align: left;
+    background:#2d3e50;
+    padding:0.5em;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+
+.home-menu .pure-menu-heading{
+    color:#fff;
+}

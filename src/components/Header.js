@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
-import AppBar from 'material-ui/AppBar';
+
+import './Header.css'
 
 class Header extends Component {
     render() {
         const {welcome} = this.props;
         return (
-                <AppBar title={welcome}></AppBar>
+          <div className="header">
+            <div className="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+              <a className="pure-menu-heading" href="#">{welcome}</a>
+            </div>
+          </div>
         );
     }
 }
