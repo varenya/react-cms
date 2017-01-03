@@ -1,41 +1,63 @@
 import React, {Component} from 'react';
 
-import {DragDropContext} from 'react-dnd';
-
-import HTML5Backend from 'react-dnd-html5-backend';
-
 import {ItemTypes} from '../constants/ItemTypes';
+
+import GridComponent from '../components/GridComponent';
+
+import {fromJS} from 'immutable';
 
 class Container extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            grid: {
-                accepts: ItemTypes.TITLE,
-                lastItem: null
-            },
-            droppedBoxNames: []
+            data: fromJS({
+                grid: {
+                    accepts: [ItemTypes.TITLE],
+                    lastItem: null
+                },
+                droppedBoxNames: []
+            })
         };
         this.renderGrid = this.renderGrid.bind(this);
+        this.handleDrop = this.handleDrop.bind(this);
+    }
+
+    handleDrop(item) {
+        const {name} = item;
+        console.log(item, name, 'name');
+        // console.log(this.state.toJS());
+        this.setState(({data}) => {
+            console.log(data.toJS(),"wow");
+            return {
+                data: data.update('droppedBoxNames', list => list.push(name))
+                          .updateIn(['grid','lastItem'] , (v) => (name))
+            }
+        })
     }
 
     renderGrid() {
         const index = [0, 1, 2, 3];
         const style = {
-            height 40 px
+            height: '40px'
         };
+        const accepts = this.state.data.getIn(['grid', 'accepts']);
+        console.log('accepts', accepts.toJS());
         return index.map((index) => {
-            return (
-                <div className="pure-u-1-4" style={style}></div>
-            )
-        })
-
+            console.log(index);
+            return (<GridComponent style={style} key={index} accepts={accepts.toJS()} onDrop={this.handleDrop} lastItem = {this.state.data.getIn(['grid','lastItem'])}/>)
+        });
     }
 
     render() {
-        const {grid} = this.props;
-        return ()
+        return (
+            <div>
+                {this.renderGrid()}
+            </div>
+        );
     }
 
 }
+
+export default Container;
+//export default DragDropContext(HTML5Backend)(Container);
