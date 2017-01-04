@@ -1,11 +1,13 @@
 import React from 'react';
 
+import { ItemTypes } from '../constants/ItemTypes';
+
 import {DropTarget} from 'react-dnd';
 
 function GridComponent(props) {
     // console.log("properites",props);
     const {connectDropTarget, canDrop, isOver, accepts , lastItem} = props;
-    console.log(lastItem);
+    // console.log(lastItem);
     const isActive = isOver && canDrop;
     let backgroundColor = '#222';
     if (isActive) {
@@ -13,19 +15,11 @@ function GridComponent(props) {
     } else if (canDrop) {
         backgroundColor = 'darkkhaki';
     }
+    const color = '#fff';
+    const RenderItem = isActive ? 'Release to drop' : lastItem
     return connectDropTarget(
-        <div className="pure-u-4" style={{...props.style,backgroundColor}}>
-          {
-            isActive ?
-              'Release to drop' :
-              'This grid accepts '+ accepts.join('')
-          }
-          <br/>
-          {
-            lastItem &&
-            JSON.stringify(lastItem)
-          }
-            {props.children}
+        <div className="pure-u-4" style={{...props.style,backgroundColor,color}}>
+              {RenderItem}
         </div>
     );
 }

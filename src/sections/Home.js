@@ -20,17 +20,22 @@ import HTML5Backend from 'react-dnd-html5-backend';
 
 import './Home.css'
 
+function Sample(props){
+    return (<h1> hellow </h1>);
+}
+
+
 class Home extends Component {
 
     render() {
         return (
           <div>
-            <Header welcome="REACT CMS" name="heading" />
+            <Header welcome="REACT CMS" name={<Sample />} />
             <div className="pure-g home">
-              <div className="pure-u-1-3">
+              <div className="pure-u-1-4">
                   <ComponentMenu />
               </div>
-              <div className="pure-u-2-3">
+              <div className="pure-u-3-4">
                   <Container />
               </div>
             </div>
