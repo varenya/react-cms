@@ -4,6 +4,8 @@ import {ItemTypes} from '../constants/ItemTypes';
 
 import GridComponent from '../components/GridComponent';
 
+import Header from '../components/Header';
+
 import {fromJS} from 'immutable';
 
 class Container extends Component {
@@ -38,20 +40,21 @@ class Container extends Component {
 
     renderGrid() {
         const index = [0, 1, 2, 3];
-        const style = {
-            height: '40px'
-        };
+        const style  = {
+          height: '65px'
+        }
         const accepts = this.state.data.getIn(['grid', 'accepts']);
         console.log('accepts', accepts.toJS());
         return index.map((index) => {
             console.log(index);
-            return (<GridComponent style={style} key={index} accepts={accepts.toJS()} onDrop={this.handleDrop} lastItem = {this.state.data.getIn(['grid','lastItem'])}/>)
+            return (<GridComponent key={index} style={style} accepts={accepts.toJS()} onDrop={this.handleDrop} lastItem = {this.state.data.getIn(['grid','lastItem'])}/>)
         });
     }
 
     render() {
         return (
             <div>
+                {/* <Header welcome="Test" name="Hey" /> */}
                 {this.renderGrid()}
             </div>
         );

@@ -15,10 +15,15 @@ function GridComponent(props) {
     } else if (canDrop) {
         backgroundColor = 'darkkhaki';
     }
-    const color = '#fff';
-    const RenderItem = isActive ? 'Release to drop' : lastItem
+    const localStyle = {
+          color : '#fff',
+          border : '1px solid black',
+          textAlign : 'center'
+    };
+    // const color = '#fff';
+    const RenderItem = isActive ? <h1>Release to drop</h1> : lastItem
     return connectDropTarget(
-        <div className="pure-u-4" style={{...props.style,backgroundColor,color}}>
+        <div className="pure-u-4" style={{...props.style,backgroundColor,...localStyle}}>
               {RenderItem}
         </div>
     );
